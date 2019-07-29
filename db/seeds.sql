@@ -6,7 +6,8 @@
 --     stock_quantity INT NOT NULL,
 -- );
 
-INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("High Density Foam Roller", "Fitness", 10, 12);
+INSERT INTO products (product_name, department_name, price, stock_quantity) 
+VALUES ("High Density Foam Roller", "Fitness", 10, 12);
 
 INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("Dumbbells", "Fitness", 5, 25);
 
@@ -20,10 +21,10 @@ INSERT INTO products (product_name, department_name, price, stock_quantity) VALU
 
 INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("3-D printer", "Hobbies", 350, 1);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ();
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("USB Memory Stick", "Office", 19.99, 25);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ();
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("Desk Lamp", "Decor", 15.99, 10);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ();
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("Volley Ball", "Fitness", 15, 5);
 
-INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ();
+INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES ("Brick Paper Weight", "Office", 5.00, 1);
