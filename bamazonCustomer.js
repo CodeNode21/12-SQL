@@ -18,15 +18,15 @@ connection.connect(function(err){
 });
 
 function inventoryList(){
-    connection.query("SELECT * FROM products", (err, res) => {
+    connection.query("SELECT item_id, product_name, department_name, price, stock_quantity FROM products", (err, res) => {
         if(err) throw err;
         console.table(res);
         // connection.end();
-        retailTherapy();
+        shopping();
     })
 };
 
-function retailTherapy(){
+function shopping(){
     inquirer
       .prompt([
           {
@@ -54,16 +54,12 @@ function retailTherapy(){
 }
 
 function productSelection(){
-    connection.query("SELECT product_name, item_id FROM products", (err, res) => {
-        if(err) throw (err);
-        // console.log(err);
-        console.table(res);
         inquirer
           .prompt([
               {
                   type: "input",
                   name: "choice",
-                  message: "I'd like to purchase item number _",
+                  message: "Item ID you'd like to purchase =",
                   validate: (val)=> {
                       return !isNaN(val);
                   }
@@ -76,8 +72,6 @@ function productSelection(){
                 
             }
           })
-    } )
-
 }
 
 function checkInventory(chioceId, inventory){
