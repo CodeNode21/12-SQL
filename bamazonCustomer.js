@@ -22,11 +22,11 @@ function inventoryList(){
         if(err) throw err;
         console.table(res);
         // connection.end();
-        shopping();
+        shopping(res);
     })
 };
 
-function shopping(){
+function shopping(val){
     inquirer
       .prompt([
           {
@@ -43,39 +43,90 @@ function shopping(){
             switch (answer.choice){
             case "yes":
                 console.log("Alright, choose desired product by id and enter it");
-                productSelection();
+                productSelection(val);
                 break;
             case "no":
-                console.log("Alright, good bye...");
-                connection.end
+                console.log("Alright, goodbye...");
+                connection.end;
+                process.exit(0)
                 break;
+            default:
+                console.log("Please type yes or no");
+                shopping();
         }
       });
 }
 
-function productSelection(){
+function productSelection(inventory){
         inquirer
           .prompt([
               {
                   type: "input",
                   name: "choice",
-                  message: "Item ID you'd like to purchase =",
+                  message: "Please enter Id number of the item you'd like to purchase :",
                   validate: (val)=> {
+                    //   console.log("\n"+val)
                       return !isNaN(val);
                   }
               }
           ])
           .then((val)=>{
-            let choiceId = parseInt(val.choice);
-            let product = checkInventory(choiceId, inventory);
-            if (product) {
-                
-            }
+            let productId = parseInt(val.choice);
+            let product = checkInventory(productId, inventory);
+                if (product) {
+                    console.log(`You've selected ${product.product_name}.   
+    This item costs \$${product.price} each and there are currently ${product.stock_quantity} in stock.`);
+                    orderStart(product);
+                }
+                else{
+                console.log("Product you've selected does not exist. Please try again.")
+                productSelection();
+                }
           })
+};
+
+function orderStart(product){
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                name: "quantity",
+                message: "How many would you like? :",
+                validate: function(val) {
+                    return val >= 0;
+                }
+            }
+        ])
+        .then(function(val){
+            var quantity = parseInt(val.quantity);
+            if (quantity > product.stock_quantity){
+                console.log(`There are only ${product.stock_quantity} and not enough to fulfill the order.. Please choose a lesser amount. `);
+                orderStart(product);
+            }
+            else {
+                checkout(product, quantity)
+            }
+        })
 }
 
-function checkInventory(chioceId, inventory){
-    connection.query("")
+function checkout(product, quantity){
+    connection.query(
+        "UPDATE products SET stock_quantity = stock_quantity - ? WHERE item_id = ?",
+        [quantity, product.item_id],
+        function(err, res) {
+            console.log(`\nCongrats on completing your order of ${product.item_id} ${product.product_name} for total of \$` + product.price*quantity);
+            inventoryList();
+        }
+    )
+}
+
+function checkInventory(productId, inventory){
+    for (var i = 0; i < inventory.length; i++){
+        if (inventory[i].item_id === productId) {
+            return inventory[i];
+        }
+    }
+    return null;
 }
 
 
