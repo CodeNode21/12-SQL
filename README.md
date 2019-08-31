@@ -14,4 +14,4 @@ However, if the store does have enough of the product, app will fulfill the cust
 
 Once the update goes through, app will show the customer the total cost of their purchase.
 
-![app screenshot](../assets/screenshot.png?raw=true "bamazonCustomer")
+![app screenshot](assets/screenshot.png)
