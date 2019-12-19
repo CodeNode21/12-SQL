@@ -18,7 +18,7 @@ Once the update goes through, app will show the customer the total cost of their
 You can run this app by cloning this repo and running the app with the following command in your terminal. 
 
 ```
-node server.js
+node bamazoncustomer.js
 ```
 
 
