@@ -15,7 +15,7 @@ However, if the store does have enough of the product, app will fulfill the cust
 Once the update goes through, app will show the customer the total cost of their purchase.
 
 ### Prerequisites
-You can run this app by cloning this repo and running the app with the following command in your terminal. 
+You can run this app by cloning this repo and running the following command in your terminal. 
 
 ```
 node bamazoncustomer.js
