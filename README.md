@@ -24,3 +24,8 @@ node bamazoncustomer.js
 
 ## Demo
 ![app screenshot](SQLInventoryLoggerGIF.gif)
+
+
+### Built With
+This app runs on Node.js. 
+Upon start creates a SQL db, afterwhich is updated by users selections. 

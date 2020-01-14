@@ -21,7 +21,6 @@ function inventoryList(){
     connection.query("SELECT item_id, product_name, department_name, price, stock_quantity FROM products", (err, res) => {
         if(err) throw err;
         console.table(res);
-        // connection.end();
         shopping(res);
     })
 };
@@ -65,7 +64,6 @@ function productSelection(inventory){
                   name: "choice",
                   message: "Please enter Id number of the item you'd like to purchase :",
                   validate: (val)=> {
-                    //   console.log("\n"+val)
                       return !isNaN(val);
                   }
               }
